@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="jquery-3.5.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="css/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  .about_title{
+   color: rgb(218, 35, 147);
+   font-size: 50px;
+   font-family:'Times New Roman', Times, serif;
+   }
+    .about{
+    font-weight: bold;
+    text-decoration: italic;
+    color: rgb(145, 83, 129);
+    font-size: 30px; 
+    font-family:'Times New Roman', Times, serif;
+}
+    /* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+    #families { visibility:hidden }
+  </style>
+</head>
+
+
+<!--JAVASCRIPT-->
+
+
+<div>
+
+  <!--סרגל כלים-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id ="tools">
+          <li><img width="40" height="40" src="images/icon.jpg"></li> 
+          <li  id="about">
+            <a href="#about" >About</a>
+          </li>
+          <li id="contact">
+            <a href="#contact">Contact</a>
+          </li>
+
+          <!--כאן הם מוחבאים אבל כאשר  מישהו יכנס הם יופיעו -->
+          <li id="catalog">
+            <a href="#catalog">Catalog</a>
+          </li>
+          <li id="manage_user">
+            <a href="#manage_user">manage user</a>
+          </li>
+        </ul>
+           <!--עד כאן יש סרגל כלים בלי כפתור-->  
+
+
+
+          <li>
+             <!--כפתור ההתנתקות יהיה מוחבא עד שמישהו יכנס -->\
+            <button id="buttonLogOut"  style="width:auto;">LogOut</button>
+             <button id="buttonLogIn" onclick="document.getElementById('loginModal').style.display='block'" style="width:auto;">Login</button>
+            </li>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!--אמצע הדף כאן משתילים את הדפים-->
+  <div id="middlePage" style="height: 550px;"> <!--class="container-fluid text-center"-->
+      
+  </div>
+    <!-- סוף אמצע הדף שמשתילים את הדפים-->
+
+
+</div>
+<!--עד כאן סרגל הכלים וגם אמצע הדף-->
+
+  <!--  מודל שקופץ -->
+  <div id="loginModal" class="modal"  tabindex="-1">
+    <form class="modal-content animate" action="/action_page.php" method="post">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('loginModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <img width="40" height="40" src="images/icon.jpg">
+      </div>
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" id="username" name="uname" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" id="password" name="psw" required>
+          
+        <button id="SignIn" type="button" onclick="document.getElementById('loginModal').style.display='none'"  >Sighin</button><label>
+
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('loginModal').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+
+    </form>
+
+  </div>
+    <!--  מודל שקופץ סוף -->
+
+
+
+    <script>
+      let user=null;
+      let username=null;
+      let userpassword=null
+      let updateUser_p=0;
+      let updateUser_n="";
+      let page;
+ 
+ //מחביא ישר כשנכנסים
+ $(document).ready(function(){
+         let page;
+         $("#buttonLogOut").hide()
+         $("#manage_user").hide()
+         $("#catalog").hide()
+         if(location.hash=="")
+             page="about"
+         else 
+           page=location.hash.substr(1);  
+ 
+           let person = sessionStorage.getItem("user");// נבדוק אם מישהו נמצא במאגר
+ 
+           if(person!=null){
+            user = JSON.parse(person);
+            setLogIn(user.username);
+            }
+           Pageloading(page)
+ 
+         //כשילחצו על לחיצה להיכנס אחרי הזנת שם וסיסמא 
+         $("#SignIn").click(function(){  
+
+          username = $("#username").val()
+          userpassword= $("#password").val()
+
+          fetch("/api/login", {
+           method: "post",
+           headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json'
+           },
+           body: JSON.stringify({
+             username: $("#username").val(),
+             password:$("#password").val()
+           })
+         })
+         .then(response => response.json())
+         .then(data => {
+           if (data==true){
+             setLogIn($("#username").val());
+           }
+           else
+             alert("User Not Found")
+         })})
+ 
+         //כשילחצו על לחיצה להתנתקות  
+         $("#buttonLogOut").click(function(){
+           user=null;
+           username=null;
+           sessionStorage.removeItem("user");
+           $("#buttonLogOut").hide();
+           $("#manage_user").hide();
+           $("#catalog").hide();
+           $("#buttonLogIn").show();
+
+           page="about";
+           Pageloading("about");
+           window.location.pathname;// מחזיר את מסלול הקובץ של הדף הנוכחי למה?
+           //$("#buttonLogIn").show();
+           });
+ 
+           //הדף יטען לפי הלחיצה המתאימה
+           $("#about").click(function(){
+             Pageloading("about")})
+           $("#contact").click(function(){
+             Pageloading("contact")})
+           $("#manage_user").click(function(){
+             Pageloading("manage_user")})
+           $("#catalog").click(function(){
+             Pageloading("catalog")})
+ });
+ 
+ //טיפול בכניסה של משתמש 
+ function setLogIn(usernm){
+   $("#buttonLogIn").hide('fast');
+   $("#buttonLogOut").show(5);
+   fetchUser(usernm);
+ }
+ 
+ //טעינת דפים  
+ function Pageloading(currentPage){
+         let url=currentPage;
+         //alert("user name= "+ username)
+         if(user!=null)
+         url += "?user=" + username;
+
+           //אם לחצו על הקטלוג
+         if(currentPage =="catalog" && username )
+         {
+           $("#middlePage")
+             .load(url, function(data, status){
+               $.get( "/api/" + url, function(data, status){
+               alert("server catalog answer is "+ data)
+               if(data == "NOT_ALLOWD")
+               {
+                 Pageloading("NOT_ALLOWD") 
+               } 
+              else{       
+               var content = '<table class="table">'
+                 content += '<tr>' +
+                     '<th>Name</th>' + 
+                     '<th>Color</th>' +
+                     '<th>Price</th>' +
+                     '</tr>';
+               for(i=0; i < data.length; i++){
+                   content += '<tr>' +
+                     '<td>' + data[i].name + '</td>' + 
+                     '<td>' + data[i].color + '</td>' +
+                     '<td>' + data[i].cost + '$ </td>' +
+                     '<td><img  class="img-circle"  width="100" height="100" src="images/' + data[i].image + '"/></td>' +
+                     '</tr>';
+               }
+               content += "</table>"
+ 
+               $('#listOfFlowers').html(content);             
+               }})
+           })
+          }
+
+            //אם לחצו על הניהול משתמשים
+           else if(currentPage == "manage_user" && username){  
+                 let level = (user.level).toString()//למקרה שזה לא טוב שזה מספר
+                 currentPage += "?level=" + level;
+                 $("#middlePage")
+                 .load(currentPage, function(data, status){
+                 $.get( "/api/" + url , function(data, status)
+                 {
+                  renderUserTable(data);
+               })
+           })
+         }  
+         else if(currentPage =="about"){
+          $("#middlePage").load(currentPage)
+         }
+         else if(currentPage =="contact")
+           {
+             $("#middlePage").load(currentPage) 
+           //alert("טענו את הצור קשר")
+           }
+         else
+         {
+           currentPage="NOT_ALLOWD"
+           $("#middlePage").load(currentPage)
+         } 
+ }
+ 
+ //בונה את הדף של ניהול משתמשים
+ function renderUserTable(data){
+   var content = '<table class="table" >' 
+         content += '<tr>' +
+         '<th>name</th>' + 
+         '<th>level</th>';
+         if(user.level==1)  
+       {
+         content += 
+         '<th>password</th>' ;
+       }
+       content += '</tr>';
+ 
+       for(i = 0; i < data.length; i++){
+           content += '<tr>' +
+             '<td>' + data[i].username + '</td>' 
+
+             if( data[i].level == 1)
+             content +='<td> manager</td>'
+             if( data[i].level == 2)
+             content +='<td> employee</td>'
+             if( data[i].level == 3)
+             content +='<td> client</td>'
+             if( data[i].level == 4)
+             content +='<td> Supplier</td>'
+
+             if(user.level==1)//אם הוא מנהל נראה לו גם את הסיסמאות
+               { 
+                 content += 
+               '<td>'+ data[i].password+'</td>' 
+               //נמחק משתמש
+               if((user.password == data[i].password && user.username == data[i].username))//אא למחוק את עצמו
+                {
+                  content += '<td><button  onclick="deleteUser('+ data[i].password + ",'" + data[i].username +'\')" type="button" class="btn btn-danger btn-md" id="myBtn2" data-show="false" disabled>delete</button></td>'
+                }
+                else{
+                content += '<td><button onclick="deleteUser('+ data[i].password + ",'" + data[i].username +'\')" type="button" class="btn btn-danger btn-md" id="myBtn2" data-show="false">delete</button></td>'
+                }
+               }
+               if( (user.level==2  && data[i].level == 1 ))  
+               {
+                 content += 
+                 '<td><button onclick="upDateDetail(' + data[i].password + ",'" + data[i].username +'\')" type="button" class="btn btn-success btn-md" id="updateButton" data-toggle="modal" data-target="#modelUpdate" data-show="true" disabled>update</button></td>'
+              }
+              else{
+                content += 
+                '<td><button onclick="upDateDetail('+ data[i].password + ",'" + data[i].username +'\')" type="button" class="btn btn-success btn-md" id="updateButton" data-toggle="modal" data-target="#modelUpdate" data-show="true" >update</button></td>'
+                  }
+               content +=  '</tr>';
+       }
+       content += "</table>";
+       $('#userList').html(content); 
+   }
+ 
+//  //מחיקת משתמש
+//  //עי שליחה של שם משתמש וסיסמא של האדם שרוצים למחוק
+//  function deleteUser(pass, name){
+//     if(confirm("Delete User " + name + "?"))
+//     {
+//       level=user.level;
+//       fetch('/api/delete?password='+pass+ "?name=" + name,
+//       {
+//         method:'GET' 
+//       })
+//     .then(response => response.json())
+//     .then(data => {
+//           if(data==false)
+//             alert("failed");
+//           else
+//           { 
+//             renderUserTable(data)
+//           }
+      
+//         } ) 
+//     }
+//  }
+ 
+ //הוספת משתמש חדש
+ function saveNew(){
+   
+     level=$("#newPermission").val()
+     if(level == null) level=1;
+     password=$("#newPass").val()
+     username=$("#newUserName").val()
+     ISactive=true;
+     if(user.level== 2 && level != 3){
+       alert("No permissions")
+     }
+     else if(user.level== 2||user.level == 1)
+   {
+     //alert(level + password+ username)
+     let newUser = {
+       "username":username,
+       "password":password,
+       "ISactive":ISactive,
+       "level":level,
+     }
+ 
+   fetch('/api/newUser?user='+user.username, {
+     method:  'POST',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+ 
+     //כאן שולחים את המשתנה החדש שיצרנו
+     body: JSON.stringify(newUser),
+   })
+   .then(response => response.json())
+   .then(data => {
+     renderUserTable(data)
+   })
+   .catch((error) => {
+     console.error('Error:', error);
+   });
+   } 
+   else 
+       alert("No permissions")
+ }
+ 
+ //מחיקת משתמש
+ function deleteUser(pass, name){
+   if(confirm("Delete User " + name+ "?"))
+   {
+     level=user.level;
+     fetch('/api/delete?pass='+pass+"&name=" + name,
+     {
+       method:'GET' 
+     })
+   .then(response => response.json())
+   .then(data => {
+         if(data==false)
+           alert("failed");
+         else
+         { 
+           renderUserTable(data)
+         }
+     
+       } ) 
+   }
+ }
+ 
+ //כשלוחצים על כפתור העידכון
+ function upDateDetail(pass,name)
+ {
+   updateUser_n=name
+   updateUser_p=pass
+ }
+ //כשלוחצים על שמירת העידכון
+ function saveUpd(){
+
+  level=$("#updPermission").val()
+
+  let newUser = {
+    "level":level
+  }
+
+fetch('/api/updUser?password='+ updateUser_p + '&username=' + updateUser_n, {
+  method:  'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(newUser),
+})
+.then(response => response.json())
+.then(data => {
+  if(data!=false)
+     renderUserTable(data)
+ 
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+}
+ 
+ 
+ function fetchUser(usernm)
+ {
+           // נשלח את שם המשתמש ונקבל עליו את כל הפרטים
+           fetch("/api/user?user="
+           +usernm, {
+             method: "GET",
+           })
+           .then(response => response.json())
+           .then(data => {
+             if (data){
+              user=data;
+              sessionStorage.setItem("user", JSON.stringify(user));             
+               if(data.level==1)
+                 manager(user)
+               if(data.level==2)
+                 emploee(user)   
+               if(data.level==3)
+                 client(user)   
+               if(data.level==4)
+                supplier(user)   
+             }
+             else
+               alert("User Not Found")
+             
+           })          
+         
+ }
+ 
+ function manager(user)
+ {
+  //alert("כנסתי למנהל")
+   $("#catalog").show(5);
+   $("#manage_user").show(5);
+ }
+ 
+ function emploee(user)
+ {
+   $("#catalog").show(5);
+   $("#manage_user").show(5);
+ 
+ }
+ 
+ function client(user)
+ {
+   //alert("נכנסתי ללקוח")
+   $("#catalog").show(5);
+ }
+ 
+ function supplier(user)
+ {
+   $("#catalog").show(5);
+ }
+ 
+ 
+ //גורם למודל לקפוץ
+ var modal = document.getElementById('loginModal');
+ // When the user clicks anywhere outside of the modal, close it
+ window.onclick = function(event) {
+     if (event.target == modal) {
+         modal.style.display = "none";
+     }
+ }
+ </script>
+
+
+</body> 
+
+   <!--תחתית הדף-->
+    <footer>
+<div class="footer-basic">
+        <div class="social">
+            <a href="https://www.linkedin.com/in/tamar-nehemia-80634421a/"><i class="icon ion-social-linkedin"></i></a>
+            <a href="https://www.facebook.com/hanatamar.nehemia"><i class="icon ion-social-facebook"></i></a>
+        </div>
+        <p class="copyright">@copyright 2021 - Lea and Tamar Task 3 2022</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    </footer>  
+</html>
